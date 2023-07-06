@@ -19,7 +19,7 @@ export const Flights = () => {
 
     return (
         <div>
-            {flights.map((flight) => (
+            {flights.filter(flight=>flight.launch_year!=='2020').map(flight => (
                 <Flight
                     key={flight.flight_number}
                     flight={flight}
