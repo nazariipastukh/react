@@ -1,16 +1,13 @@
 import styles from './User.module.css'
 
-const Post=(props)=>{
-    const {post}=props
-    const {id,userId,title,body}=post
+export const Post = (props) => {
+    const {post} = props
 
-    return(
+    return (
         <div className={styles.user}>
-            <h2>{id} - {userId}</h2>
-            <h3>{title}</h3>
-            <h4>{body}</h4>
+            <h2>{post.id}, {post.userId}</h2>
+            <h3>{post.title}</h3>
+            <h3>{post.body}</h3>
         </div>
     )
 }
-
-export default Post

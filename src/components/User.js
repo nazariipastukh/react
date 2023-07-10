@@ -2,18 +2,15 @@
 
 import styles from './User.module.css'
 
-const User = (props)=>{
-    const {user,setUserId}=props
-    const {id,name,username,email}=user
+export const User = (props) => {
+    const {user, setUserId} = props
 
-    return(
+    return (
         <div className={styles.user}>
-            <h2>{id}. {name}</h2>
-            <h3>{username}</h3>
-            <h4>{email}</h4>
-            <button onClick={()=>setUserId(id)}>Posts</button>
+            <h2>{user.id}, {user.name}</h2>
+            <h3>{user.username}</h3>
+            <h3>{user.email}</h3>
+            <button onClick={() => setUserId(user.id)}>See posts</button>
         </div>
     )
 }
-
-export default User

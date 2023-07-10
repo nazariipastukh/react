@@ -3,7 +3,7 @@ import {Posts} from "./components/Posts";
 import {useState} from "react";
 
 const App = () => {
-    const [userId,setUserId]=useState(null)
+    const [userId, setUserId] = useState(null)
 
     return (
         <div>
