@@ -1,0 +1,11 @@
+.userCard{
+    border: 1px black solid;
+    margin:5vh;
+    padding:1vh;
+    width:30vw;
+}
+.info{
+    border:1px black solid;
+    padding: 1vh;
+    margin: 1vh;
+}
