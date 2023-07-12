@@ -1,7 +1,7 @@
 import {Post} from './Post'
 import {useEffect, useState} from "react";
 
-export const Posts = ({userId, users}) => {
+export const Posts = ({user: {userId, name}}) => {
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
@@ -14,12 +14,9 @@ export const Posts = ({userId, users}) => {
 
     return (
         <div>
-            {posts.map(post => {
-                const author = users.filter(user => user.id === post.userId)[0]
-                return (
-                    <Post key={post.id} post={post} author={author}/>
-                )
-            })}
+            {posts.map(post =>
+                <Post key={post.id} post={post} userName={name}/>
+            )}
         </div>
     )
 }

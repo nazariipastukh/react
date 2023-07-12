@@ -6,24 +6,15 @@
 import './App.css'
 import {UsersComponent} from "./components/UsersComponent";
 import {Posts} from "./components/Posts";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 export const App = () => {
-    const [userId, setUserId] = useState(null)
-    const [users, setUsers] = useState([])
-
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(data => {
-                setUsers(data)
-            })
-    }, [])
+    const [user, setUser] = useState(null)
 
     return (
         <div className='main'>
-            <UsersComponent users={users} setUserId={setUserId}/>
-            {userId && <Posts userId={userId} users={users}/>}
+            <UsersComponent setUser={setUser}/>
+            {user && <Posts user={user}/>}
         </div>
     )
 }
