@@ -24,10 +24,6 @@ export const App = () => {
     }, [])
 
     return (
-        <div className='main'>
-            {users.map(user => (
-                <Users key={user.id} user={user}/>
-            ))}
-        </div>
+        <Users key={users.id} users={users}/>
     );
 }

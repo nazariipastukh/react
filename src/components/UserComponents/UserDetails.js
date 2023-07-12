@@ -1,10 +1,10 @@
 import styles from "../User.module.css";
 
-export const UserDetails = ({user}) => (
+export const UserDetails = ({user: {id, name, username, email, phone, website}}) => (
     <div className={styles.info}>
         <h3>Information:</h3>
-        <h4>{user.id}, {user.name} - {user.username}</h4>
-        <h4>{user.email} - {user.phone}</h4>
-        <h4>{user.website}</h4>
+        <h4>{id}, {name} - {username}</h4>
+        <h4>{email} - {phone}</h4>
+        <h4>{website}</h4>
     </div>
 )
