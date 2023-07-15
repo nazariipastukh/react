@@ -4,15 +4,14 @@
 import './App.css';
 import {Cars} from './components/Cars.js'
 
-
 function App() {
-  return (
-    <div className="App">
-        <div>
-            <Cars/>
+    return (
+        <div className="App">
+            <div>
+                <Cars/>
+            </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default App;

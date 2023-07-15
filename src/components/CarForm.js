@@ -1,51 +1,58 @@
-import './Cars.css'
-import {useState} from "react";
+import {useForm} from "react-hook-form";
+import {useEffect} from "react";
 
-export const CarForm = ({setOnSend}) => {
-    const [formValues, setFormValues] = useState({
-        brand: '', price: '', year: ''
-    })
+export const CarForm = ({setOnSend, onUpdate, setOnUpdate}) => {
+    const {register, handleSubmit, reset, setValue} = useForm()
 
-    const handleFormChange = (e, key) => {
-        e.preventDefault()
-        const {value} = e.target
-        setFormValues(prevState => {
-            return {
-                ...prevState,
-                [key]: value
-            }
-        })
-    }
+    useEffect(() => {
+        if (onUpdate) {
+            setValue('brand', onUpdate.brand)
+            setValue('year', onUpdate.year)
+            setValue('price', onUpdate.price)
+        }
+    }, [onUpdate, setValue])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        handleSend(e)
-    }
-
-    const handleSend = (e) => {
-        e.preventDefault()
+    const handleSend = (data) => {
         fetch('http://owu.linkpc.net/carsAPI/v1/cars', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
-            body: JSON.stringify(formValues)
+            body: JSON.stringify(data)
         })
-            .then(response => response.json())
+            .then(value => {
+                if (!value.ok) {
+                    throw Error(value.status + ' not ok')
+                }
+                return value.json()
+            })
             .then(() => {
-                setOnSend(prevState => !prevState)
-                setFormValues(formValues)
+                setOnSend(previous => !previous)
+                reset()
+            })
+            .catch(e => {
+                console.log(e)
+            })
+    }
+
+    const handleUpdate = (car) => {
+        fetch(`http://owu.linkpc.net/carsAPI/v1/cars/${onUpdate.id}`, {
+            headers: {'content-type': 'application/json'},
+            method: 'PUT',
+            body: JSON.stringify(car)
+        })
+            .then(value => value.json())
+            .then(() => {
+                setOnSend(previous => !previous)
+                setOnUpdate(null)
             })
     }
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(!onUpdate ? handleSend : handleUpdate)}>
                 <lable className='lable'> Add New Car:
-                    <input type='text' placeholder='Enter Brand' value={formValues.brand}
-                           onChange={e => handleFormChange(e, 'brand')}/>
-                    <input type='number' placeholder='Enter Year' value={formValues.year}
-                           onChange={e => handleFormChange(e, 'year')}/>
-                    <input type='text' placeholder='Enter Price' value={formValues.price}
-                           onChange={e => handleFormChange(e, 'price')}/>
+                    <input type='text' {...register('brand')} placeholder='Enter Brand'/>
+                    <input type='number' {...register('year')} placeholder='Enter Year'/>
+                    <input type='text' {...register('price')} placeholder='Enter Price'/>
                     <button type='submit'> Send</button>
                 </lable>
             </form>
