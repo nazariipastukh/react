@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+// Реалізувати, використовуючи useForm хук, а також сервіс axios наступне. Всі запити винести в сервісний рівень
+// 1.
+// Зробити компонент, в якому буде форма, за допомоги якої можливо створити нового юзера постовим запитом на
+// http://jsonplaceholder.typicode.com/users
+// 2.
+// Зробити компонент, в якому буде форма, за допомоги якої можливо створити новий комментар постовим запитом на
+// http://jsonplaceholder.typicode.com/comments
+// 3.
+// Реалізувати створення, видалення та оновлення машин
+// http://owu.linkpc.net/carsAPI/v1/doc
+
 import './App.css';
+import {LoginPage} from "./components/LoginPage";
+import {CommentPage} from "./components/CommentPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <LoginPage/>
+            <CommentPage/>
+        </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,38 @@
+.wrapperLogin{
+    height:100vh;
+    width:100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: lavender;
+}
+.formLogin{
+    width:30vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: aliceblue;
+    border-radius: 15px;
+    padding: 2vh
+}
+label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input{
+    width: 20vw;
+    height: 3vh;
+    border: 1px darkgrey solid;
+    border-radius: 10px;
+    padding-left: 1vw;
+    margin: 0.7vh;
+}
+button{
+    margin: 2vh 0 1vh 0;
+    border: 1px darkgrey solid;
+    border-radius: 5px;
+    background: white;
+    width:10vh;
+    height:3vh;
+}
