@@ -5,12 +5,17 @@ const instance = axios.create({
 });
 
 const Endpoints = {
-    REGISTER: '/users'
+    REGISTER: '/users',
+    COMMENT: '/comments'
 };
 
 export const ApiServices = {
     handleSubmit: (data) => {
         instance.post(Endpoints.REGISTER, data)
+            .then(data => console.log(data))
+    },
+    handleComment: (data) => {
+        instance.post(Endpoints.COMMENT, data)
             .then(data => console.log(data))
     }
 };

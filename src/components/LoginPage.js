@@ -18,8 +18,8 @@ export const LoginPage = () => {
     };
 
     return (
-        <div className={styles.wrapper}>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.wrapperLogin}>
+            <form className={styles.formLogin} onSubmit={handleSubmit(onSubmit)}>
                 <label>
                     Enter Your Information:
                     <input type="text" placeholder="Name:" {...register('name')} />

@@ -11,11 +11,13 @@
 
 import './App.css';
 import {LoginPage} from "./components/LoginPage";
+import {CommentPage} from "./components/CommentPage";
 
 function App() {
     return (
         <div className="App">
             <LoginPage/>
+            <CommentPage/>
         </div>
     );
 }
