@@ -1,0 +1,22 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width:25vw;
+    align-items: center;
+    background: lavender;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 2vh;
+    padding:20px;
+    text-align: center;
+}
+.navBar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 10vh;
+    width:100vw;
+    background: lavender;
+    border-bottom: 1px solid black;
+}
