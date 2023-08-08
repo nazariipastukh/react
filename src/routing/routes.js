@@ -1,4 +1,4 @@
 export const routes = {
-    main:'/',
+    main: '/',
     lesson9: '/redux'
 }

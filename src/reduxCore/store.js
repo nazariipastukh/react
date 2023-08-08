@@ -1,16 +1,14 @@
 import {combineReducers, createStore} from "redux";
 import {composeWithDevTools} from "@redux-devtools/extension";
-import {usersReducers} from "./reducers/userReducers";
+import {characterReducers} from "./reducers/characterReducers";
 
-const rootReducer=combineReducers({
-    users: usersReducers
-    // rick: rickReducer
+const rootReducer = combineReducers({
+    characters: characterReducers
 })
 
-const composeEnhancers=composeWithDevTools({
-    trace:true,
-    traceLimit:25
+const composeEnhancers = composeWithDevTools({
+    trace: true,
+    traceLimit: 25
 })
 
-export const store= createStore(rootReducer,composeEnhancers());
-
+export const store = createStore(rootReducer, composeEnhancers());
