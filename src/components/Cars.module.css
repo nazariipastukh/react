@@ -1,0 +1,14 @@
+label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+button{
+    height:3vh;
+    width:5vw;
+}
+.car{
+    width: 30vw;
+    height: 20vh;
+    border: 1px solid black;
+}
