@@ -13,14 +13,14 @@ export const CarForm = ({setOnSend, onUpdate, setOnUpdate}) => {
         }
     }, [onUpdate, setValue])
 
-    const handleSend = (data) => {
-        carService.postCar(data)
-            .then(() => {
-                setOnSend(previous => !previous);
-                setOnUpdate(null);
-                reset();
-            })
-    };
+    // const handleSend = (data) => {
+    //     carService.postCar(data)
+    //         .then(() => {
+    //             setOnSend(previous => !previous);
+    //             setOnUpdate(null);
+    //             reset();
+    //         })
+    // };
 
     const handleUpdate = (car) => {
         carService.updateCar(onUpdate.id, car)
@@ -33,7 +33,7 @@ export const CarForm = ({setOnSend, onUpdate, setOnUpdate}) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(!onUpdate ? handleSend : handleUpdate)}>
+            <form onSubmit={handleSubmit(!onUpdate ? {/*handleSend*/} : handleUpdate)}>
                 <label> Add New Car:
                     <input type='text' {...register('brand')} placeholder='Enter Brand'/>
                     <input type='number' {...register('year')} placeholder='Enter Year'/>
