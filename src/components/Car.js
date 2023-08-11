@@ -1,22 +1,17 @@
 import './Cars.module.css'
-// import {carService} from "../services";
+import {useDispatch} from "react-redux";
+import {actions, deleteCar} from "../redux";
 
-export const Car = ({car/*, setOnSend, setOnUpdate*/}) => {
+export const Car = ({car}) => {
     const {id, brand, price, year} = car
-
-    // const handleDelete = () => {
-    //     carService.deleteCar(id)
-    //         .then(() => {
-    //             setOnSend(previous => !previous);
-    //         })
-    // };
+    const dispatch = useDispatch()
 
     return (
         <div className='car'>
             <h3>ID: {id}</h3>
             <h4>{brand}, {year} - {price} USD</h4>
-            {/*<button onClick={handleDelete}> Delete</button>*/}
-            {/*<button onClick={() => setOnUpdate(car)}> Update</button>*/}
+            <button onClick={() => dispatch(deleteCar(id))}> Delete</button>
+            <button onClick={() => dispatch(actions.setCarForUpdate(car))}> Update</button>
         </div>
     )
 }

@@ -1,21 +1,21 @@
 import {carActionTypes} from "../actions/carActions";
 
-const initialState={
-    cars:[],
-    carsForUpdate: null
+const initialState = {
+    cars: [],
+    carForUpdate: null
 }
 
-export const carReducer= (state=initialState, action) =>{
-    switch(action.type){
+export const carReducer = (state = initialState, action) => {
+    switch (action.type) {
         case carActionTypes.SET_CARS:
-            return{
+            return {
                 ...state,
                 cars: action.payload
             }
         case carActionTypes.SET_CAR_FOR_UPDATE:
-            return{
+            return {
                 ...state,
-                carsForUpdate: action.payload
+                carForUpdate: action.payload
             }
         default:
             return state

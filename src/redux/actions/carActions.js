@@ -7,7 +7,7 @@ export const carActionTypes = {
 
 export const actions = {
     setCars: (payload) => ({type: carActionTypes.SET_CARS, payload}),
-    setCarsForUpdate: (payload) => ({type: carActionTypes.SET_CAR_FOR_UPDATE, payload})
+    setCarForUpdate: (payload) => ({type: carActionTypes.SET_CAR_FOR_UPDATE, payload})
 }
 
 export const getCars = () => (dispatch) => {
@@ -24,6 +24,19 @@ export const createCar = (car) => (dispatch) => {
         })
 }
 
-export const carActions={
-    getCars
+export const updateCar = (id, car) => (dispatch) => {
+    carService.updateCar(id, car)
+        .then(() => {
+            dispatch(actions.setCarForUpdate(null))
+        })
+        .then(() => {
+            dispatch(getCars())
+        })
+}
+
+export const deleteCar = (id) => (dispatch) => {
+    carService.deleteCar(id)
+        .then(() => {
+            dispatch(getCars())
+        })
 }
