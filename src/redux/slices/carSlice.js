@@ -1,8 +1,7 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, isFulfilled, isRejected, isPending} from "@reduxjs/toolkit";
 import {carService} from "../../services";
 
-
-const initialState={
+const initialState = {
     cars: [],
     carForUpdate: null,
     errors: null,
@@ -13,50 +12,94 @@ const getCar = createAsyncThunk(
     'carSlice/get',
     async (_, thunkApi) => {
         try {
-            const {data} = await  carService.getAll()
+            const {data} = await carService.getAll()
             return data
-        }catch (e){
+        } catch (e) {
             return thunkApi.rejectWithValue(e.response.data)
         }
     }
 )
 
-// const createCar = createAsyncThunk(
-//
-// )
-//
-// const deleteCar = createAsyncThunk(
-//
-// )
-//
-// const updateCar = createAsyncThunk(
-//
-// )
+const createCar = createAsyncThunk(
+    'carSlice/create',
+    async ({car}, thunkApi) => {
+        try {
+            await carService.createCar(car)
+            thunkApi.dispatch(getCar())
+        } catch (e) {
+            return thunkApi.rejectWithValue(e.response.data)
+        }
+    }
+)
+
+const updateCar = createAsyncThunk(
+    'carSlice/update',
+    async ({id, car}, thunkApi) => {
+        try {
+            await carService.updateCar(id, car)
+            thunkApi.dispatch(getCar())
+        } catch (e) {
+            return thunkApi.rejectWithValue(e.response.data)
+        }
+    }
+)
+
+const deleteCar = createAsyncThunk(
+    'carSlice/delete',
+    async ({id}, thunkApi) => {
+        try {
+            await carService.deleteCar(id)
+            thunkApi.dispatch(getCar())
+        } catch (e) {
+            return thunkApi.rejectWithValue(e.response.data)
+        }
+    }
+)
 
 const carSlice = createSlice({
-    name:'carSlice',
+    name: 'carSlice',
     initialState,
-    reducers:{
-
-    },
-    extraReducers:{
-        [getCar.fulfilled]: (state, action) => {
-            state.cars = action.payload
-            state.isLoading = false
-        },
-        [getCar.pending]: (state) => {
-            state.isLoading = true
+    reducers: {
+        setCarForUpdate: (state, action) => {
+            state.carForUpdate = action.payload
         }
+    },
+    extraReducers: builder => {
+        builder
+            .addCase(getCar.fulfilled, (state, action) => {
+                state.cars = action.payload
+                state.isLoading = false
+            })
+            .addCase(createCar.fulfilled, () => {
+            })
+            .addCase(updateCar.fulfilled, (state) => {
+                state.carForUpdate = null
+            })
+            .addCase(deleteCar.fulfilled, () => {
+            })
+            .addMatcher(isPending(), (state) => {
+                state.isLoading = true
+                state.errors = null
+            })
+            .addMatcher(isFulfilled(), (state) => {
+                state.isLoading = false
+                state.errors = null
+            })
+            .addMatcher(isRejected(), (state, action) => {
+                state.idLoading = true
+                state.errors = action.payload
+            })
     }
 })
 
-const {reducer: carReducer, actions:{} } = carSlice
+const {reducer: carReducer, actions: {setCarForUpdate}} = carSlice
 
 export const carActions = {
     getCar,
-    // createCar,
-    // deleteCar,
-    // updateCar
+    createCar,
+    setCarForUpdate,
+    updateCar,
+    deleteCar,
 }
 
 export {carReducer}

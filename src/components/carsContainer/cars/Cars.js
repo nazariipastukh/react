@@ -7,9 +7,9 @@ const Cars = () => {
     const dispatch = useDispatch()
     const {cars} = useSelector(state => state.cars)
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(carActions.getCar())
-    },[dispatch])
+    }, [dispatch])
 
     return (
         <div>
