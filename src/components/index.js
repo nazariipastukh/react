@@ -1,0 +1,5 @@
+export * from './header/HeaderComponent'
+export * from './character/CharacterComponent'
+export * from './episode/EpisodeComponent'
+export * from './episodes/EpisodesComponent'
+export * from './characters/CharactersComponent'
