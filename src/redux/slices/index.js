@@ -1,3 +1,3 @@
 export * from './progressSlice'
-export * from './chractersSlice'
+export * from './charactersSlice'
 export * from './episodesSlice'

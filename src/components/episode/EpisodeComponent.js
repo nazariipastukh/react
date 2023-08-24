@@ -1,37 +1,44 @@
-import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/material";
-import * as PropTypes from "prop-types";
-
-Typography.propTypes = {
-    color: PropTypes.string,
-    sx: PropTypes.shape({fontSize: PropTypes.number}),
-    gutterBottom: PropTypes.bool,
-    children: PropTypes.node
-};
+import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
+import styles from '../Episode.module.css'
+import {useDispatch} from "react-redux";
+import {episodeActions} from "../../redux";
 
 export const EpisodeComponent = ({episode}) => {
-    const {name, air_date, episode: episodeName} = episode
+    const {name, air_date, episode: episodeName, characters} = episode
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const toCharacters = () => {
+        const ids = characters.map(character => character.split('/').slice(-1)[0]).join(',')
+        dispatch(episodeActions.setCurrent(name))
+        navigate('/characters', {state: {ids}})
+    }
 
     return (
-        <Box sx={{width: 275}}>
-            <Card variant="outlined">
+        <div className={styles.box}>
+            <Card sx={{
+                height: '35vh',
+                width: '13vw',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+            }}>
                 <CardContent>
-                    <Typography sx={{fontSize: 14}} color="text.secondary" gutterBottom>
-                        Episode
-                    </Typography>
-                    <Typography variant="h5" component="div">
+                    <Typography gutterBottom variant="h5" component="div">
                         {name}
                     </Typography>
-                    <Typography sx={{mb: 1.5}} color="text.secondary">
-                        {episodeName}
-                    </Typography>
-                    <Typography variant="body2">
+                    <Typography variant="body2" color="text.secondary">
                         {air_date}
                     </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {episodeName}
+                    </Typography>
                 </CardContent>
-                <CardActions>
-                    <Button size="small" variant={'contained'}>Characters</Button>
+                <CardActions className={styles.button}>
+                    <Button size="small" variant={'contained'} onClick={toCharacters}>Characters</Button>
                 </CardActions>
             </Card>
-        </Box>
-    );
-};
+        </div>
+    )
+}

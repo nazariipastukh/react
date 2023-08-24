@@ -3,6 +3,7 @@ import {useEffect} from "react";
 import {episodeActions} from "../../redux";
 import {useSearchParams} from "react-router-dom";
 import {EpisodeComponent} from "../episode/EpisodeComponent";
+import styles from '../Episode.module.css'
 
 export const EpisodesComponent = () => {
     const dispatch = useDispatch()
@@ -16,9 +17,11 @@ export const EpisodesComponent = () => {
     }, [dispatch, page])
 
     return (
-        <div>
+        <div className={styles.wrapper}>
             {episodes.map(episode => (
-                <EpisodeComponent key={episode.id} episode={episode}/>
+                <EpisodeComponent
+                    key={episode.id} episode={episode}
+                />
             ))}
         </div>
     );

@@ -1,0 +1,50 @@
+body{
+    overflow-x: hidden;
+    margin: 0;
+}
+.wrapper{
+    margin:0 0 3vh 20vh ;
+    justify-content: start;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.box{
+    margin: 1vh 1vh;
+    padding: 1vh 2vh;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1vh;
+}
+.header{
+    font-size: 40px;
+    color: lavender;
+    font-family: "Book Antiqua", sans-serif ;
+    height: 10vh;
+    width: 100vw;
+    background-color: slateblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.episodesPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1vh 0 4vh 0;
+}
+.headerWrap{
+    position: sticky;
+    top: 0;
+    height: 11vh;
+    width: 100vw;
+    z-index: 1000;
+}
+.boxCharacter{
+    margin: 1vh 1vh;
+    padding: 1vh 2vh;
+}
